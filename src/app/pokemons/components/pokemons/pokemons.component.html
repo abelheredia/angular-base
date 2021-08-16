@@ -1,0 +1,13 @@
+<a href="/auth">Volver</a>
+
+<div *ngIf="result.results.length != 0; else loading">
+  <h2>Los primeros {{ result.results.length }} Pokemones</h2>
+
+  <ul>
+    <li *ngFor="let p of result.results">{{ p.name | titlecase }}</li>
+  </ul>
+</div>
+
+<ng-template #loading>
+  <shared-loading></shared-loading>
+</ng-template>
