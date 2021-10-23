@@ -13,6 +13,11 @@ const routes: Routes = [
       import(`./pokemons/pokemons.module`).then((m) => m.PokemonsModule),
   },
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import(`./dashboard/dashboard.module`).then((m) => m.DashboardModule),
+  },
+  {
     path: '',
     redirectTo: '/auth',
     pathMatch: 'full',
@@ -24,11 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      preloadingStrategy: PreloadAllModules,
-    }),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutesModule {}
