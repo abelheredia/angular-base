@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DoctoresComponent } from './doctores/components/doctores/doctores.component';
+import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'doctores',
-    loadChildren: () =>
-      import(`./doctores/doctores.module`).then((m) => m.DoctoresModule),
-  },
-  {
     path: '',
-    component: DoctoresComponent,
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'doctores',
+        pathMatch: 'full',
+      },
+      {
+        path: 'doctores',
+        loadChildren: () =>
+          import(`./doctores/doctores.module`).then((m) => m.DoctoresModule),
+      },
+    ],
   },
 ];
 

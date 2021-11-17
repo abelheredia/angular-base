@@ -28,16 +28,20 @@ export class DoctoresComponent implements OnInit {
   constructor(private service: DoctoresService) {}
 
   ngOnInit(): void {
-    // this.cargando = true;
-    // this.service.getDoctores().subscribe((data: any) => {
-    //   this.cargando = false;
-    //   this.docs = data['doctores'];
-    // });
+    this.getDoctores();
   }
 
   insertDoctor(): void {
     this.service.insertDoctor(this.doc).subscribe((data: any) => {
-      console.log(data);
+      this.getDoctores();
+    });
+  }
+
+  getDoctores(): void {
+    this.cargando = true;
+    this.service.getDoctores().subscribe((data: any) => {
+      this.cargando = false;
+      this.docs = data['doctores'];
     });
   }
 }

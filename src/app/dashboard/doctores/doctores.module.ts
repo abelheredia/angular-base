@@ -7,9 +7,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { SocketIoModule } from 'ngx-socket-io';
 import { CookieService } from 'ngx-cookie-service';
+import { EditarDoctorComponent } from './components/editar-doctor/editar-doctor.component';
 
 @NgModule({
-  declarations: [DoctoresComponent],
+  declarations: [DoctoresComponent, EditarDoctorComponent],
   imports: [
     CommonModule,
     DoctoresRoutesModule,

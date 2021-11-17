@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DoctoresComponent } from './components/doctores/doctores.component';
+import { EditarDoctorComponent } from './components/editar-doctor/editar-doctor.component';
 
 const routes: Routes = [
   {
-    path: 'doctores',
+    path: '',
     component: DoctoresComponent,
+  },
+  {
+    path: 'editar',
+    component: EditarDoctorComponent,
   },
   {
     path: '**',
