@@ -1,11 +1,43 @@
 <a href="/auth">Volver</a>
 
-<div *ngIf="result.results.length != 0; else loading">
-  <h2>Los primeros {{ result.results.length }} Pokemones</h2>
+<div *ngIf="pokemons.length != 0; else loading">
+  <h2>Los primeros {{ pokemons.length }} Pokemones</h2>
 
-  <ul>
-    <li *ngFor="let p of result.results">{{ p.name | titlecase }}</li>
-  </ul>
+  <div class="tarjetas">
+    <div
+      *ngFor="
+        let p of pokemons | paginate: { itemsPerPage: 4, currentPage: page }
+      "
+      class="tarjeta"
+    >
+      <h3>{{ p.name | titlecase }}</h3>
+      <img [src]="p.img" alt="" />
+    </div>
+  </div>
+  <div class="pagination">
+    <pagination-template #p="paginationApi" (pageChange)="page = $event">
+      <div class="custom-pagination">
+        <button (click)="p.previous()" [disabled]="p.isFirstPage()">
+          atras
+        </button>
+        <div
+          class="page-number"
+          *ngFor="let page of p.pages"
+          [class.current]="p.getCurrent() === page.value"
+        >
+          <span
+            (click)="p.setCurrent(page.value)"
+            *ngIf="p.getCurrent() !== page.value"
+            >{{ page.label }}</span
+          >
+          <div *ngIf="p.getCurrent() === page.value">
+            <span>{{ page.label }}</span>
+          </div>
+        </div>
+        <button (click)="p.next()" [disabled]="p.isLastPage()">adelante</button>
+      </div>
+    </pagination-template>
+  </div>
 </div>
 
 <ng-template #loading>

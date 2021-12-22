@@ -14,4 +14,8 @@ export class PokemonService {
       .get('https://pokeapi.co/api/v2/pokemon')
       .pipe(map((data) => data));
   }
+
+  getImg(url: string): any {
+    return this.http.get(url).pipe(map((data) => data));
+  }
 }
