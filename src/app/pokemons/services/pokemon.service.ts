@@ -18,4 +18,10 @@ export class PokemonService {
   getImg(url: string): any {
     return this.http.get(url).pipe(map((data) => data));
   }
+
+  enviarTramas(email: string): any {
+    return this.http
+      .get(`http://127.0.0.1:5001/api/tedef/${email}`)
+      .pipe(map((data) => data));
+  }
 }
