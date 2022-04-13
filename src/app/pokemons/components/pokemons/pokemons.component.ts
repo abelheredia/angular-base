@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PokemonList, Result } from 'src/app/shared/interfaces/Pokemons';
 import { PokemonService } from '../../services/pokemon.service';
-
+import SwiperCore, { Navigation, Pagination } from 'swiper';
+SwiperCore.use([Navigation, Pagination]);
 @Component({
   selector: 'app-pokemons',
   templateUrl: './pokemons.component.html',

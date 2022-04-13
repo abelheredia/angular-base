@@ -1,77 +1,113 @@
-<a href="/auth">Volver</a>
-<div class="container flex-r">
-  <div *ngIf="pokemons.length != 0; else loading" class="container2">
-    <h2>Los primeros {{ pokemons.length }} Pokemones</h2>
-
-    <div class="tarjetas">
-      <div
+<div class="container">
+  <a href="/auth">Volver</a>
+  <div class="container1 flex-r">
+    <div *ngIf="pokemons.length != 0; else loading" class="container2 flex-c">
+      <h2>Los primeros {{ pokemons.length }} Pokemones</h2>
+      <div class="tarjetas">
+        <div
+          *ngFor="
+            let p of pokemons
+              | paginate: { itemsPerPage: grupo, currentPage: page }
+          "
+          class="tarjeta"
+        >
+          <h3>{{ p.name | titlecase }}</h3>
+          <img [src]="p.img" alt="" />
+        </div>
+      </div>
+      <div class="pagination">
+        <h4>
+          Del
+          {{ ((page > 1 ? page : 1) - 1) * grupo + 1 }} al
+          {{
+            ((page > 1 ? page : 1) - 1) * grupo + grupo > p.getTotalItems()
+              ? p.getTotalItems()
+              : (((page > 1 ? page : 1) - 1) * grupo + grupo | number: "2.0")
+          }}
+          de {{ p.getTotalItems() }} registros
+        </h4>
+        <pagination-template
+          class="controls"
+          #p="paginationApi"
+          (pageChange)="page = $event"
+        >
+          <div class="custom-pagination">
+            <button (click)="p.previous()" [disabled]="p.isFirstPage()">
+              atras
+            </button>
+            <div
+              class="page-number"
+              *ngFor="let page of p.pages"
+              [class.current]="p.getCurrent() === page.value"
+            >
+              <span
+                (click)="p.setCurrent(page.value)"
+                *ngIf="p.getCurrent() !== page.value"
+                >{{ page.label }}</span
+              >
+              <div *ngIf="p.getCurrent() === page.value">
+                <span>{{ page.label }}</span>
+              </div>
+            </div>
+            <button (click)="p.next()" [disabled]="p.isLastPage()">
+              adelante
+            </button>
+          </div>
+        </pagination-template>
+      </div>
+    </div>
+    <div class="container2">
+      <form [formGroup]="tramasFG" class="flex-c">
+        <h3>Enviar tramas por correo</h3>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error> Ingrese una dirección de correo válida </mat-error>
+        </mat-form-field>
+        <button
+          mat-stroked-button
+          color="primary"
+          [disabled]="tramasFG.status != 'VALID'"
+          (click)="enviarTramas()"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="container1">
+    <swiper
+      [slidesPerView]="1"
+      [navigation]="true"
+      [pagination]="{ clickable: true }"
+    >
+      <ng-template
         *ngFor="
           let p of pokemons
             | paginate: { itemsPerPage: grupo, currentPage: page }
         "
-        class="tarjeta"
-      >
-        <h3>{{ p.name | titlecase }}</h3>
-        <img [src]="p.img" alt="" />
-      </div>
-    </div>
-    <div class="pagination">
-      <h4>
-        Del
-        {{ ((page > 1 ? page : 1) - 1) * grupo + 1 }} al
-        {{
-          ((page > 1 ? page : 1) - 1) * grupo + grupo > p.getTotalItems()
-            ? p.getTotalItems()
-            : (((page > 1 ? page : 1) - 1) * grupo + grupo | number: "2.0")
-        }}
-        de {{ p.getTotalItems() }} registros
-      </h4>
-      <pagination-template #p="paginationApi" (pageChange)="page = $event">
-        <div class="custom-pagination">
-          <button (click)="p.previous()" [disabled]="p.isFirstPage()">
-            atras
-          </button>
-          <div
-            class="page-number"
-            *ngFor="let page of p.pages"
-            [class.current]="p.getCurrent() === page.value"
-          >
-            <span
-              (click)="p.setCurrent(page.value)"
-              *ngIf="p.getCurrent() !== page.value"
-              >{{ page.label }}</span
-            >
-            <div *ngIf="p.getCurrent() === page.value">
-              <span>{{ page.label }}</span>
-            </div>
-          </div>
-          <button (click)="p.next()" [disabled]="p.isLastPage()">
-            adelante
-          </button>
-        </div>
-      </pagination-template>
-    </div>
+        swiperSlide
+        class="flex-c"
+        ><img [src]="p.img" alt=""
+      /></ng-template>
+    </swiper>
   </div>
-  <div class="container2 flex-r">
-    <form [formGroup]="tramasFG" class="flex-c">
-      <h3>Enviar tramas por correo</h3>
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" />
-        <mat-error> Ingrese una dirección de correo válida </mat-error>
-      </mat-form-field>
-      <button
-        mat-stroked-button
-        color="primary"
-        [disabled]="tramasFG.status != 'VALID'"
-        (click)="enviarTramas()"
+  <div class="container1">
+    <mat-stepper>
+      <mat-step
+        *ngFor="
+          let p of pokemons
+            | paginate: { itemsPerPage: grupo, currentPage: page }
+        "
       >
-        Enviar
-      </button>
-    </form>
+        <ng-template matStepLabel>{{ p.name }}</ng-template>
+        <div class="flex-c">
+          <img [src]="p.img" alt="" />
+        </div>
+      </mat-step>
+    </mat-stepper>
   </div>
 </div>
-
 <ng-template #loading>
   <shared-loading></shared-loading>
 </ng-template>
