@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatStepper } from '@angular/material/stepper';
 import { PokemonList, Result } from 'src/app/shared/interfaces/pokemon';
 import { SharedService } from 'src/app/shared/shared.service';
 
@@ -8,6 +9,7 @@ import { SharedService } from 'src/app/shared/shared.service';
   styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent implements OnInit {
+  @ViewChild('stiper', { static: false }) stepper: MatStepper;
   public result: Result = {
     count: 0,
     next: '',
@@ -34,5 +36,16 @@ export class StepperComponent implements OnInit {
       }
       this.loading = false;
     });
+  }
+
+  act(a: string): void {
+    switch (a) {
+      case 'prev':
+        this.stepper.previous();
+        break;
+      case 'next':
+        this.stepper.next();
+        break;
+    }
   }
 }

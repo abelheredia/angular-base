@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="container1 suiper flex-r">
+    <swiper
+      #suiper
+      class="suiper_content"
+      [slidesPerView]="1"
+      [pagination]="paginacion()"
+    >
+      <ng-template *ngFor="let p of pokemons" swiperSlide class="flex-c">
+        <h1>{{ p.name | titlecase }}</h1>
+        <img [src]="p.img" alt=""
+      /></ng-template>
+    </swiper>
+    <button class="prev" mat-mini-fab color="primary" (click)="act('prev')">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button class="next" mat-mini-fab color="primary" (click)="act('next')">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+</div>
+<loading *ngIf="loading"></loading>

@@ -12,14 +12,21 @@
   </div>
 </div> -->
 <div class="container">
-  <div class="container1">
-    <mat-stepper>
+  <div class="container1 flex-c steper">
+    <mat-stepper #stiper>
       <mat-step *ngFor="let p of pokemons">
         <div class="flex-c">
+          <h1>{{ p.name | titlecase }}</h1>
           <img [src]="p.img" alt="" />
         </div>
       </mat-step>
     </mat-stepper>
+    <button class="prev" mat-mini-fab color="primary" (click)="act('prev')">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button class="next" mat-mini-fab color="primary" (click)="act('next')">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
   </div>
 </div>
 <loading *ngIf="loading"></loading>

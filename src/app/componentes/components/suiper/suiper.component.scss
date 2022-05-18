@@ -1,0 +1,26 @@
+.suiper {
+  margin: 0 auto;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+
+  .suiper_content {
+    height: calc(100% - 10rem);
+    // background: goldenrod;
+  }
+
+  .prev {
+    left: 25%;
+  }
+
+  .next {
+    right: 25%;
+  }
+
+  .prev,
+  .next {
+    bottom: 5rem;
+    position: absolute;
+    z-index: 1;
+  }
+}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SwiperComponent } from './components/swiper/swiper.component';
+import { SuiperComponent } from './components/suiper/suiper.component';
 import { ComponentesComponent } from './componentes.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { PaginadorComponent } from './components/paginador/paginador.component';
@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: 'swiper',
-        component: SwiperComponent,
+        component: SuiperComponent,
       },
       {
         path: 'stepper',

@@ -4,6 +4,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SwiperModule } from 'swiper/angular';
@@ -16,6 +17,7 @@ const mat_modules = [
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
+  MatIconModule,
 ];
 
 const other_modules = [

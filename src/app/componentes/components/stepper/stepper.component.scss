@@ -1,9 +1,9 @@
-// ::ng-deep .mat-horizontal-stepper-header {
-//   pointer-events: none !important;
-// }
-// ::ng-deep .mat-horizontal-stepper-header-container {
-//   display: none !important;
-// }
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
 
 .cuadrados {
   display: flex;
@@ -38,7 +38,22 @@
   }
 }
 
-.stepper {
+.steper {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .prev {
+    left: 45%;
+  }
+
+  .next {
+    right: 45%;
+  }
+
+  .prev,
+  .next {
+    position: absolute;
+    bottom: 0;
+  }
 }
