@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { LoginComponent } from './auth/components/login/login.component';
 
 const routes: Routes = [
   {
@@ -8,14 +7,11 @@ const routes: Routes = [
     loadChildren: () => import(`./auth/auth.module`).then((m) => m.AuthModule),
   },
   {
-    path: 'pokemons',
+    path: 'componentes',
     loadChildren: () =>
-      import(`./pokemons/pokemons.module`).then((m) => m.PokemonsModule),
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () =>
-      import(`./dashboard/dashboard.module`).then((m) => m.DashboardModule),
+      import(`./componentes/componentes.module`).then(
+        (m) => m.ComponentesModule
+      ),
   },
   {
     path: '',
@@ -24,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: LoginComponent,
+    redirectTo: 'auth',
   },
 ];
 

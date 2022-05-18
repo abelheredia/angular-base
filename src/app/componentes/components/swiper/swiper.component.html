@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="container1 suiper flex-r">
+    <swiper
+      [slidesPerView]="1"
+      [navigation]="true"
+      [pagination]="{ clickable: true }"
+    >
+      <ng-template *ngFor="let p of pokemons" swiperSlide class="flex-c">
+        <h1>{{ p.name | titlecase }}</h1>
+        <img [src]="p.img" alt=""
+      /></ng-template>
+    </swiper>
+  </div>
+</div>
+<loading *ngIf="loading"></loading>

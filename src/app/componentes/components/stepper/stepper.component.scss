@@ -1,0 +1,44 @@
+// ::ng-deep .mat-horizontal-stepper-header {
+//   pointer-events: none !important;
+// }
+// ::ng-deep .mat-horizontal-stepper-header-container {
+//   display: none !important;
+// }
+
+.cuadrados {
+  display: flex;
+  width: 95%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem auto;
+
+  .cuadrado {
+    background: #e1e1e1;
+    border-radius: 25.5px;
+    width: 180px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    h3 {
+      color: white;
+      margin: 0;
+    }
+  }
+
+  .activo {
+    background: #57ccaf;
+  }
+
+  .linea {
+    background: #57ccaf;
+    height: 2px;
+    width: calc(100% - 700px);
+  }
+}
+
+.stepper {
+  display: flex;
+  justify-content: center;
+}
