@@ -1,7 +1,7 @@
 <div class="container">
   <a href="/auth">Volver</a>
   <div class="container1 flex-r">
-    <div *ngIf="pokemons.length != 0; else loading" class="container2 flex-c">
+    <!-- <div *ngIf="pokemons.length != 0; else loading" class="container2 flex-c">
       <h2>Los primeros {{ pokemons.length }} Pokemones</h2>
       <div class="tarjetas">
         <div
@@ -55,58 +55,76 @@
           </div>
         </pagination-template>
       </div>
-    </div>
-    <div class="container2">
-      <form [formGroup]="tramasFG" class="flex-c">
-        <h3>Enviar tramas por correo</h3>
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" />
-          <mat-error> Ingrese una dirección de correo válida </mat-error>
-        </mat-form-field>
-        <button
-          mat-stroked-button
-          color="primary"
-          [disabled]="tramasFG.status != 'VALID'"
-          (click)="enviarTramas()"
-        >
-          Enviar
-        </button>
-      </form>
+    </div> -->
+    <div class="container1">
+      <input
+        type="file"
+        class="form-control"
+        (change)="addfile($event)"
+        placeholder="Upload file"
+        accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+      />
+
+      <div class="container1">
+        <h3>Asegurados</h3>
+        <table>
+          <tr>
+            <th>tipo_documento</th>
+            <th>nro_documento</th>
+            <th>apellido_paterno</th>
+            <th>apellido_materno</th>
+            <th>nombre1</th>
+            <th>nombre2</th>
+            <th>fecha_nacimiento</th>
+            <th>sexo</th>
+            <th>estado_civil</th>
+            <th>nacionalidad</th>
+            <th>direccion</th>
+            <th>ubigeo</th>
+            <th>celular</th>
+            <th>email</th>
+          </tr>
+          <tr *ngFor="let a of asegurados">
+            <td>{{ a.tipo_documento }}</td>
+            <td>{{ a.nro_documento }}</td>
+            <td>{{ a.apellido_paterno }}</td>
+            <td>{{ a.apellido_materno }}</td>
+            <td>{{ a.nombre1 }}</td>
+            <td>{{ a.nombre2 }}</td>
+            <td>{{ a.fecha_nacimiento }}</td>
+            <td>{{ a.sexo }}</td>
+            <td>{{ a.estado_civil }}</td>
+            <td>{{ a.nacionalidad }}</td>
+            <td>{{ a.direccion }}</td>
+            <td>{{ a.ubigeo }}</td>
+            <td>{{ a.celular }}</td>
+            <td>{{ a.email }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="container1">
+  <!-- <div class="container1">
     <swiper
       [slidesPerView]="1"
       [navigation]="true"
       [pagination]="{ clickable: true }"
     >
-      <ng-template
-        *ngFor="
-          let p of pokemons
-            | paginate: { itemsPerPage: grupo, currentPage: page }
-        "
-        swiperSlide
-        class="flex-c"
+      <ng-template *ngFor="let p of pokemons" swiperSlide class="flex-c"
         ><img [src]="p.img" alt=""
       /></ng-template>
     </swiper>
   </div>
   <div class="container1">
     <mat-stepper>
-      <mat-step
-        *ngFor="
-          let p of pokemons
-            | paginate: { itemsPerPage: grupo, currentPage: page }
-        "
-      >
+      <mat-step *ngFor="let p of pokemons">
         <ng-template matStepLabel>{{ p.name }}</ng-template>
         <div class="flex-c">
           <img [src]="p.img" alt="" />
         </div>
       </mat-step>
     </mat-stepper>
-  </div>
+  </div> -->
 </div>
 <ng-template #loading>
   <shared-loading></shared-loading>
