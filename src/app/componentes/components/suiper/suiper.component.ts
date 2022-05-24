@@ -42,9 +42,11 @@ export class SuiperComponent implements OnInit {
           this.pokemons.push({
             name: p.name,
             img: data.sprites.other['official-artwork'].front_default,
+            order: data.order,
           });
         });
       }
+      this.pokemons.sort();
       this.loading = false;
     });
   }

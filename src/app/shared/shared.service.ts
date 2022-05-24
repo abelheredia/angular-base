@@ -8,6 +8,10 @@ import { map } from 'rxjs/operators';
 export class SharedService {
   constructor(private http: HttpClient) {}
 
+  getPokemonsUrl(url: string): any {
+    return this.http.get(url).pipe(map((data) => data));
+  }
+
   getPokemons(): any {
     return this.http
       .get('https://pokeapi.co/api/v2/pokemon')

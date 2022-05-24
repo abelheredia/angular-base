@@ -16,10 +16,9 @@ export class StepperComponent implements OnInit {
     previous: '',
     results: [],
   };
-  public page: number = 1;
-  public grupo: number = 5;
   public pokemons: Array<PokemonList> = [];
   public loading: boolean = false;
+
   constructor(private service: SharedService) {}
 
   ngOnInit(): void {
@@ -31,9 +30,11 @@ export class StepperComponent implements OnInit {
           this.pokemons.push({
             name: p.name,
             img: data.sprites.other['official-artwork'].front_default,
+            order: data.order,
           });
         });
       }
+      this.pokemons.sort();
       this.loading = false;
     });
   }

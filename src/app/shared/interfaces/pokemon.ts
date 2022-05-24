@@ -13,6 +13,7 @@ export interface Pokemon {
 export interface PokemonList {
   name: string;
   img: string;
+  order: number;
 }
 
 export interface Asegurado {
